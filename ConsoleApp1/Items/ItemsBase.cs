@@ -1,0 +1,29 @@
+namespace HelloWorld
+{
+    public abstract class Item
+    {
+        private string name;
+        private int amount = 0;
+
+        public string Name
+        {
+            get { return name; }
+            set { name = value; }
+        }
+        public int Amount
+        {
+            get { return amount; }
+            set { amount = value; }
+        }
+        public virtual bool isStackable { get; } = false;
+
+        public Item(string itemName)
+        {
+            name = itemName;
+        }
+        public void addAmount(int amount)
+            {
+        Amount += amount;
+    }
+    }
+}   
