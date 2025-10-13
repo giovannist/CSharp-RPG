@@ -6,15 +6,26 @@ namespace HelloWorld
     {
         static void Main(string[] args)
         {
-            Character hero = new Character(100, 100);
+            OptionsManagement optionsManagement = new OptionsManagement();
+            Stats stats = new Stats(0, 10);
+            Character mainCharacter = new Character(stats, new LocationCityCenter());
+
             HealthPotion healthPotion = new HealthPotion("Health Potion", 1);
 
-            hero.CharStats.Health = 10;
-            hero.inventory.addToInventory(healthPotion, 6);
-            hero.inventory.removeFromInventory(healthPotion, 4);
-            hero.inventory.showInventory();
+            LocationCityCenter cityCenter = new LocationCityCenter();
+            LocationFarm farm = new LocationFarm();
+            LocationTavern tavern = new LocationTavern();
 
-            Utils.UpdateStats(healthPotion.consume(), hero.CharStats);
+            cityCenter.ShowDialogueOptions();
+            farm.ShowDialogueOptions();
+
+            mainCharacter.CharStats.Health = 10;
+            mainCharacter.inventory.addToInventory(healthPotion, 6);
+            mainCharacter.inventory.removeFromInventory(healthPotion, 4);
+            mainCharacter.inventory.showInventory();
+
+            optionsManagement.showCurrentLocationOptions(mainCharacter);
+            optionsManagement.promptPlayer(mainCharacter);
         }
     }
 }   

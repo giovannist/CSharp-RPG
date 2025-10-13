@@ -18,7 +18,7 @@ namespace HelloWorld
 
         public void addToInventory(Item obj, int amountToAdd)
         {
-            if (amountToAdd <= 0) return;
+            if (amountToAdd <= 0) return; // throw error
 
             if (obj.isStackable)
             {
@@ -32,27 +32,30 @@ namespace HelloWorld
             obj.Amount = amountToAdd;
             _items.Add(obj);
         }
-            public void removeFromInventory(Item obj, int amountToRemove)
+        public void removeFromInventory(Item obj, int amountToRemove)
         {
 
             if (amountToRemove <= 0) return;
+            
             for (int i = 0; i < _items.Count; i++)
             {
-                if (_items[i].GetType() == obj.GetType() && obj.isStackable && _items[i].isStackable) // if item is stackable...
+                Item item = _items[i];
+                bool isSameType = item.GetType() == obj.GetType();
+
+                if (!isSameType)
                 {
-                    if (_items[i].Amount > amountToRemove)
-                    {
-                        _items[i].addAmount(-amountToRemove);
-                        return;
-                    }
-                    _items.RemoveAt(i); 
+                    continue;
+                }
+
+                bool areBothStackable = obj.isStackable && item.isStackable;
+                bool isHigher = item.Amount > amountToRemove;
+
+                if (areBothStackable && isHigher)
+                {
+                    item.addAmount(-amountToRemove);
                     return;
                 }
-                else if (_items[i].GetType() == obj.GetType() && obj.isStackable == false && _items[i].isStackable == false)
-                {
-                    _items.RemoveAt(i);
-                    return;
-                }
+                _items.RemoveAt(i);
             }
         }
     }

@@ -12,3 +12,4 @@
 /home/giovanni/Desktop/Personal/ASPNETBrabissimo/ConsoleApp1/obj/Debug/net9.0/ConsoleApp1.pdb
 /home/giovanni/Desktop/Personal/ASPNETBrabissimo/ConsoleApp1/obj/Debug/net9.0/ConsoleApp1.genruntimeconfig.cache
 /home/giovanni/Desktop/Personal/ASPNETBrabissimo/ConsoleApp1/obj/Debug/net9.0/ref/ConsoleApp1.dll
+/home/giovanni/Desktop/Personal/ASPNETBrabissimo/ConsoleApp1/obj/Debug/net9.0/ConsoleApp1.sourcelink.json

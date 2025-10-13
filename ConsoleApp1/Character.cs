@@ -4,6 +4,7 @@ namespace HelloWorld
     class Character
     {
         Stats charStats;
+        Location currentLocation;
         public Inventory inventory { get; private set; } = new Inventory();
         public Stats CharStats
         {
@@ -11,9 +12,18 @@ namespace HelloWorld
             set { charStats = value; }
         }
 
-        public Character(int maxHealth, int health)
+        public Character(Stats stats, Location currentLocation)
         {
-            charStats = new Stats(maxHealth, health);
+            charStats = stats;
+            this.currentLocation = currentLocation;
+        }
+        public Location getCurrentLocation()
+        {
+            return currentLocation;
+        }
+        public void changeLocation(Location location)
+        {
+            currentLocation = location;
         }
     }
 }
