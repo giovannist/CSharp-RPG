@@ -1,6 +1,6 @@
 namespace HelloWorld
 {
-abstract class Location
+abstract public class Location
 {
     public abstract string Name { get; }
     public abstract Location[] Options { get; }

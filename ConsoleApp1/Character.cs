@@ -1,11 +1,11 @@
 namespace HelloWorld
 {
 
-    class Character
+    public class Character
     {
         Stats charStats;
         Location currentLocation;
-        public Inventory inventory { get; private set; } = new Inventory();
+        public Inventory Inventory { get; private set; } = new Inventory();
         public Stats CharStats
         {
             get { return charStats; }

@@ -1,6 +1,6 @@
 namespace HelloWorld
 {
-    class Inventory
+    public class Inventory
     {
         // Item[] items = new Item[];
         private List<Item> _items = new List<Item>

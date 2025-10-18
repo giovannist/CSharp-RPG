@@ -1,3 +1,2 @@
--location system
 -equipment class
 -general stats
