@@ -7,7 +7,10 @@ namespace HelloWorld
     {
         static void Main(string[] args)
         {
+
+            LocationUI locationUI = new(new LocationCityCenter().Options);
             OptionsManagement optionsManagement = new OptionsManagement();
+
             Stats stats = new Stats(0, 10);
             Character mainCharacter = new Character(stats, new LocationCityCenter());
 
@@ -23,6 +26,10 @@ namespace HelloWorld
             // mainCharacter.Inventory.showInventory();
 
             OptionsManagement.LocationNavigationOptions(mainCharacter);
+
+            
+
+            // OptionsManagement.LocationNavigationOptions(mainCharacter);
 
             // optionsManagement.showCurrentLocationOptions(mainCharacter);
             // optionsManagement.promptPlayer(mainCharacter);

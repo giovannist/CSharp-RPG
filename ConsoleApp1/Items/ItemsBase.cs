@@ -4,6 +4,7 @@ namespace HelloWorld
     {
         private string name;
         private int amount = 0;
+        public int price;
 
         public string Name
         {

@@ -1,35 +1,44 @@
 namespace HelloWorld
 {
-abstract public class Location
-{
-    public abstract string Name { get; }
-    public abstract Location[] Options { get; }
-
-    public void ShowDialogueOptions()
+    abstract public class Location
     {
-        int num = 1;
-        foreach (var location in Options)
+        public abstract string Name { get; }
+        public abstract Location[] Options { get; }
+
+        public void ShowDialogueOptions()
         {
-            Console.WriteLine($"{num}. {location.Name}");
-            num++;
+            int num = 1;
+            foreach (var location in Options)
+            {
+                Console.WriteLine($"{num}. {location.Name}");
+                num++;
+            }
         }
     }
-}
 
-    class LocationCityCenter : Location
+    public class Shop
     {
-        public override string Name => "City Center";
-        public override Location[] Options => [new LocationTavern(), new LocationFarm()];
-    }
-    class LocationTavern : Location
-    {
-        public override string Name => "Tavern";
-        public override Location[] Options => [new LocationCityCenter()];
+        int size;
+        Item[] items;
+
+        Shop(Item[] items)
+        {
+            this.items = items;
+        }
+
+        public void SellItemToChararacter(Item item, Character character)
+        {
+            if (items.Contains(item))
+            {
+                if (item.price > character.Gold)
+                {
+                }
+                else
+                {
+                    
+                }
+            }
+        }
     }
 
-    class LocationFarm : Location
-    {
-        public override string Name => "Farm";
-        public override Location[] Options => [new LocationCityCenter()];
-    }
 }

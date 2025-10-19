@@ -86,25 +86,69 @@ namespace HelloWorld
             int selected = 0;
             ConsoleKey key;
 
+            //colors
+            string NL          = Environment.NewLine; // shortcut
+            string NORMAL      = Console.IsOutputRedirected ? "" : "\x1b[39m";
+            string RED         = Console.IsOutputRedirected ? "" : "\x1b[91m";
+            string GREEN       = Console.IsOutputRedirected ? "" : "\x1b[92m";
+            string YELLOW      = Console.IsOutputRedirected ? "" : "\x1b[93m";
+            string BLUE        = Console.IsOutputRedirected ? "" : "\x1b[94m";
+            string MAGENTA     = Console.IsOutputRedirected ? "" : "\x1b[95m";
+            string CYAN        = Console.IsOutputRedirected ? "" : "\x1b[96m";
+            string GREY        = Console.IsOutputRedirected ? "" : "\x1b[97m";
+            string BOLD        = Console.IsOutputRedirected ? "" : "\x1b[1m";
+            string NOBOLD      = Console.IsOutputRedirected ? "" : "\x1b[22m";
+            string UNDERLINE = Console.IsOutputRedirected ? "" : "\x1b[4m";
+            string NOUNDERLINE = Console.IsOutputRedirected ? "" : "\x1b[24m";
+            //
+
             do
             {
                 Console.Clear();
+                Console.ForegroundColor = ConsoleColor.White;
                 Console.WriteLine($"You're in {character.getCurrentLocation().Name}");
 
+                Console.ForegroundColor = ConsoleColor.DarkGray;
+                Console.WriteLine("+-----------------+");
 
                 for (int i = 0; i < options.Count; i++)
                 {
+                    int baseCount = 16;
+                    int spaceToDelete = options[i].Name.Length;
+
+                    string locationDisplay;
+
                     if (i == selected)
                     {
-                        Console.ForegroundColor = ConsoleColor.White;
-                        Console.WriteLine($">  {options[i].Name}  ");
+                        Console.ForegroundColor = ConsoleColor.DarkGray;
+
+                        locationDisplay = $"{GREY}|{NORMAL} {BLUE}>{NORMAL} {BLUE}{options[i].Name}{NORMAL}";
+                        
+                        baseCount -= 2;
+
+                        locationDisplay += new string(' ', baseCount - spaceToDelete);
+
+                        Console.ForegroundColor = ConsoleColor.DarkGray;
+                        locationDisplay += $"{GREY}|{NORMAL}";
                     }
                     else
                     {
                         Console.ForegroundColor = ConsoleColor.DarkGray;
-                        Console.WriteLine($">  {options[i].Name}  ");
+
+                        locationDisplay = $"| {NORMAL}{options[i].Name}{NORMAL}";
+
+                        locationDisplay += new string(' ', baseCount - spaceToDelete);
+
+                        Console.ForegroundColor = ConsoleColor.DarkGray;
+
+                        locationDisplay += $"|";
                     }
+
+                    Console.WriteLine(locationDisplay);
                 }
+
+                Console.ForegroundColor = ConsoleColor.DarkGray;
+                Console.WriteLine("+-----------------+");
 
                 ConsoleKeyInfo keyInfo = Console.ReadKey(true);
                 key = keyInfo.Key;
@@ -123,8 +167,6 @@ namespace HelloWorld
             } while (key != ConsoleKey.Enter);
 
             Console.Clear();
-
-            Console.WriteLine($"You selected: {options[selected].Name}");
 
             character.changeLocation(options[selected]);
 

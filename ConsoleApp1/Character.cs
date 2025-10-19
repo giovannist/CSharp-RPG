@@ -3,14 +3,22 @@ namespace HelloWorld
 
     public class Character
     {
-        Stats charStats;
-        Location currentLocation;
-        public Inventory Inventory { get; private set; } = new Inventory();
+        private Stats charStats;
         public Stats CharStats
         {
             get { return charStats; }
             set { charStats = value; }
         }
+        Location currentLocation;
+        private int gold = 0;
+        public int Gold
+        {
+            get { return Gold; }
+            set { Gold = value; }
+        }
+        
+        public Inventory Inventory { get; private set; } = new Inventory();
+
 
         public Character(Stats stats, Location currentLocation)
         {
