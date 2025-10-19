@@ -4,21 +4,13 @@ using RPG.UI;
 
 namespace RPG.World
 {
-    public class Shop: Location
+    abstract public class Shop: Location
     {
         public override string Name => "Shop";
-        private static readonly IReadOnlyList<Location> options = new List<Location>
-        {
-            new LocationCityCenter(),
-        }.AsReadOnly();
-        public override IReadOnlyList<Location> Options => options;
 
-        private readonly List<Item> stock;
 
-        public Shop(IEnumerable<Item> stock)
-        {
-            this.stock = stock.ToList();
-        }
+        public virtual List<Item> stock { get; }
+
 
         public void SellItemToChararacter(Item item, Character character)
         {
@@ -43,6 +35,45 @@ namespace RPG.World
             }
         }
 
+        public void PurchaseConfirmation(Item item, Character character)
+        {
+            bool confirmingBuy = true;
+
+            List<IMenuOption> MenuOptions = new List<IMenuOption>()
+            {
+                new confirmButton(),
+                new cancelButton(),
+            };
+
+            while (confirmingBuy)
+            {
+                string title = $"Are you sure you want to buy {item.Name} for {item.price}g?";
+                IMenuOption selected = ConsoleMenu.Show(title, MenuOptions);
+
+                if (selected is confirmButton)
+                {
+                    SellItemToChararacter(item, character);
+                    confirmingBuy = false;;
+                }
+                else if (selected is cancelButton)
+                {
+                    confirmingBuy = false;
+                }
+            }
+
+
+        }
+
+        class confirmButton : IMenuOption
+        {
+            public string DisplayName => "Confirm";
+        }
+        
+        class cancelButton : IMenuOption
+        {
+            public string DisplayName => "Cancel";
+        }
+
         public void EnterShop(Character character)
         {
             var MenuOptions = new List<IMenuOption>();
@@ -63,7 +94,17 @@ namespace RPG.World
 
                 if (selected is ShopItemOption itemOption)
                 {
-                    SellItemToChararacter(itemOption.Item, character);
+
+                    if (itemOption.Item.price > character.Gold)
+                    {
+                        Console.WriteLine($"You're missing {itemOption.Item.price - character.Gold}g!");
+                        Console.ReadKey();
+                    }
+                    else
+                    {
+                        PurchaseConfirmation(itemOption.Item, character);
+                    }
+
                 }
                 else if (selected is leaveShopOption)
                 {

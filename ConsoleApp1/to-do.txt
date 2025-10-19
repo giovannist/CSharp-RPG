@@ -1,6 +1,5 @@
 
 1st
--shop mechanic  - adapt to make it so there is no predetermined "selected" option, but none are selected at the start and when you click enter it gets selected, with "buy" and "quit" buttons in the bottom
 
 -test multiple UI elements at the same time
 

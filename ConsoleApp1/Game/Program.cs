@@ -11,6 +11,7 @@ namespace RPG
         public Game()
         {
             Stats playerStats = new Stats(100, 100);
+
             Location startingLocation = new LocationCityCenter();
             playerCharacter = new Character(playerStats, startingLocation);
         }

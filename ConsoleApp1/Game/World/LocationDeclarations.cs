@@ -7,6 +7,7 @@ public class LocationCityCenter : Location
     {
         new LocationFarm(),
         new LocationTavern(),
+        new ShopCityCenter()
     }.AsReadOnly();
 
     public override IReadOnlyList<Location> Options => options;

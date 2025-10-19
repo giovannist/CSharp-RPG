@@ -13,11 +13,9 @@ namespace RPG.Core
         public Stats stats { get; set; }
         public Location location { get; private set; }
 
-
-
         public Inventory inventory { get; private set; } = new Inventory();
 
-        public Character(Stats stats, Location startingLocation, int startingGold = 0)
+        public Character(Stats stats, Location startingLocation, int startingGold = 5)
         {
             this.stats = stats;
             location = startingLocation;
