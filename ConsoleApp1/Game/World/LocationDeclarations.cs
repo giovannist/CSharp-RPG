@@ -19,6 +19,7 @@ public class LocationFarm : Location
     private static readonly IReadOnlyList<Location> options = new List<Location>
     {
         new LocationCityCenter(),
+        new LocationForest(),
     }.AsReadOnly();
 
     public override IReadOnlyList<Location> Options => options;
@@ -30,6 +31,18 @@ public class LocationTavern : Location
     private static readonly IReadOnlyList<Location> options = new List<Location>
     {
         new LocationCityCenter(),
+    }.AsReadOnly();
+
+    public override IReadOnlyList<Location> Options => options;
+}
+
+public class LocationForest : Location
+{
+    public override string Name => "Forest";
+    private static readonly IReadOnlyList<Location> options = new List<Location>
+    {
+        new LocationFarm(),
+        new BattleForest(),
     }.AsReadOnly();
 
     public override IReadOnlyList<Location> Options => options;

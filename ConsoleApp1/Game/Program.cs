@@ -1,4 +1,5 @@
 using RPG.Core;
+using RPG.Enemies;
 using RPG.Items;
 using RPG.UI;
 using RPG.World;
@@ -25,6 +26,11 @@ namespace RPG
                 if (current is Shop shop)
                 {
                     shop.EnterShop(playerCharacter);
+                }
+                else if (current is Battle battle)
+                {
+                    EnemyDeclarations enemies = new EnemyDeclarations();
+                    battle.EnterBattle(playerCharacter, enemies.Wolf);
                 }
 
                 string title = $"You are in {current.Name}";

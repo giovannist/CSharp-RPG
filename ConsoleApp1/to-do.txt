@@ -1,8 +1,6 @@
 
 1st
 
--test multiple UI elements at the same time
-
 2nd
 -general stats
 -battle mechanic
